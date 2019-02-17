@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var request = require("request");
 const opts = {
   errorEventName:'error',
       logDirectory:'', // NOTE: folder must exist and be writable...
@@ -20,16 +21,28 @@ router.post('/clientcrm', function(req, res, next) {
   opts.fileNamePattern = 'request.txt';
   // const log = require('simple-node-logger').createRollingFileLogger( opts );
 
-  console.log(req.params);
   apiData.lastName = req.body.lastName;
   apiData.firstName = req.body.firstName;
   apiData.email = req.body.email;
   apiData.phone = req.body.phone;
   apiData.affiliateInfo = {affiliateId:'24066'};
-  apiData.countryCode = req.param('country');
+  apiData.countryCode = req.body.countryCode;
+  apiData.password  = req.body.password;
+  console.log(apiData);
   // log.info('subscription to ',apiData, ' accepted at ', new Date().toJSON());
-  console.log(apiData)
-  res.json(apiData);
+  var options = { method: 'POST',
+  url: 'https://api.finte.co/v3/users',
+  qs: { webId: '08cd854f-d1b2-4250-90ab-c0bf827749fc' },
+  headers: 
+   { 'Content-Type': 'application/json' },
+  body: JSON.stringify(apiData) };
+
+request(options, function (error, response,crmData) {
+  console.log('response of crm');
+  if (error) throw new Error(error);
+    res.json(crmData);
+});
+
 
 });
 module.exports = router;
