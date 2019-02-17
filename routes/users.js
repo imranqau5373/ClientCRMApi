@@ -20,14 +20,16 @@ router.post('/clientcrm', function(req, res, next) {
   opts.fileNamePattern = 'request.txt';
   // const log = require('simple-node-logger').createRollingFileLogger( opts );
 
-
+  console.log(req.params);
   apiData.lastName = req.body.lastName;
   apiData.firstName = req.body.firstName;
   apiData.email = req.body.email;
   apiData.phone = req.body.phone;
+  apiData.affiliateInfo = {affiliateId:'24066'};
+  apiData.countryCode = req.param('country');
   // log.info('subscription to ',apiData, ' accepted at ', new Date().toJSON());
   console.log(apiData)
-  res.json(req.body);
+  res.json(apiData);
 
 });
 module.exports = router;
