@@ -18,21 +18,16 @@ router.post('/clientcrm', function(req, res, next) {
   console.log('in client crm')
   opts.logDirectory = './public/logFiles/';
   opts.fileNamePattern = 'request.txt';
-  const log = require('simple-node-logger').createRollingFileLogger( opts );
-  
+  // const log = require('simple-node-logger').createRollingFileLogger( opts );
+
 
   apiData.lastName = req.body.lastName;
-  log.info('subscription to ',apiData, ' accepted at ', new Date().toJSON());
+  apiData.firstName = req.body.firstName;
+  apiData.email = req.body.email;
+  apiData.phone = req.body.phone;
+  // log.info('subscription to ',apiData, ' accepted at ', new Date().toJSON());
   console.log(apiData)
   res.json(req.body);
-  // fs.writeFile("/logFiles/request.txt", apiData, function(err) {
-  //     if(err) {
-  //         return console.log(err);
-  //     }
-
-  //     console.log("The file was saved!");
-  //     res.json(req.body);
-  // });
 
 });
 module.exports = router;
