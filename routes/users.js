@@ -80,7 +80,6 @@ router.post('/affliates', function(req, res, next) {
 
      fixieRequest(options,function (err, res, body) {
        console.log(body);
-       res.json(body);
     });
 
 });
