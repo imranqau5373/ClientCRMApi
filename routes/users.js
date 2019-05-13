@@ -65,7 +65,6 @@ router.post('/affliates', function(req, res, next) {
   apiData.phone = req.body.phone;
   apiData.countryCode = req.body.countryCode;
   apiData.password  = req.body.password;
-  console.log(apiData);
   var options = { method: 'POST',
   url: 'https://api.water-pipeline.com/SignalsServer/api/registerUser',
   qs: 
@@ -81,7 +80,7 @@ router.post('/affliates', function(req, res, next) {
 
      fixieRequest(options,function (err, res, body) {
        console.log(body);
-      console.log(`Got response: ${res.statusCode}`);
+       res.json(body);
     });
 
 });
