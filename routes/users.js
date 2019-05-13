@@ -38,17 +38,13 @@ router.post('/clientcrm', function(req, res, next) {
    { 'Content-Type': 'application/json' },
   body: JSON.stringify(apiData) };
 
-// request(options, function (error, response,crmData) {
-//   console.log('response of crm');
-//   if (error) throw new Error(error);
-//     res.json(crmData);
-// });
-
-fixieRequest(options, (err, res, body) => {
+request(options, function (error, response,crmData) {
   console.log('response of crm');
   if (error) throw new Error(error);
     res.json(crmData);
 });
+
+
 
 
 });
@@ -83,12 +79,11 @@ router.post('/affliates', function(req, res, next) {
    { 'Postman-Token': '62b16b75-d54d-48bf-865c-7d93f3c7539d',
      'cache-control': 'no-cache' } };
 
-request(options, function (error, response, body) {
-  if (error)
-    res.json(error);
-    else
-    res.json(body);
-});
+     fixieRequest(options, (err, res, body) => {
+      console.log('response of crm');
+      if (error) throw new Error(error);
+        res.json(crmData);
+    });
 
 });
 module.exports = router;
