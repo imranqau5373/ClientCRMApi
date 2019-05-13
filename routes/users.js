@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require("request");
+const fixieRequest = request.defaults({'proxy': ' http://fixie:cP7UXRXTuOMOmKv@olympic.usefixie.com:80'});
 const opts = {
   errorEventName:'error',
       logDirectory:'', // NOTE: folder must exist and be writable...
@@ -37,7 +38,13 @@ router.post('/clientcrm', function(req, res, next) {
    { 'Content-Type': 'application/json' },
   body: JSON.stringify(apiData) };
 
-request(options, function (error, response,crmData) {
+// request(options, function (error, response,crmData) {
+//   console.log('response of crm');
+//   if (error) throw new Error(error);
+//     res.json(crmData);
+// });
+
+fixieRequest(options, (err, res, body) => {
   console.log('response of crm');
   if (error) throw new Error(error);
     res.json(crmData);
