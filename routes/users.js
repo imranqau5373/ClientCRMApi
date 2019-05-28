@@ -79,8 +79,8 @@ router.post('/affliates', function(req, res, next) {
    { 'Postman-Token': '62b16b75-d54d-48bf-865c-7d93f3c7539d',
      'cache-control': 'no-cache' } };
 
-     fixieRequest(options,function (err, data, body) {
-       res.json(body);
+     fixieRequest(options,function (err, data, response) {
+       res.json(response);
     });
 
 });
