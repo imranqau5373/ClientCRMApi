@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var request = require("request");
-const fixieRequest = request.defaults({'proxy': ' http://fixie:cP7UXRXTuOMOmKv@olympic.usefixie.com:80'});
+const fixieRequest = request.defaults({'proxy': 'http://fixie:T0RpNcgPkdIzKLi@olympic.usefixie.com:80'});
 const opts = {
   errorEventName:'error',
       logDirectory:'', // NOTE: folder must exist and be writable...
@@ -73,6 +73,7 @@ router.post('/affliates', function(req, res, next) {
      email: apiData.email,
      telephone: apiData.phone,
      countryiso: apiData.countryCode,
+     sc:'SOURCE',
      apikey: '51363aa0ca7743f2af06a45308e87baa' },
   headers: 
    { 'Postman-Token': '62b16b75-d54d-48bf-865c-7d93f3c7539d',
