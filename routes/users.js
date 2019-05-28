@@ -65,6 +65,7 @@ router.post('/affliates', function(req, res, next) {
   apiData.phone = req.body.phone;
   apiData.countryCode = req.body.countryCode;
   apiData.password  = req.body.password;
+  apiData.src = req.body.src;
   var options = { method: 'POST',
   url: 'https://api.water-pipeline.com/SignalsServer/api/registerUser',
   qs: 
@@ -73,7 +74,7 @@ router.post('/affliates', function(req, res, next) {
      email: apiData.email,
      telephone: apiData.phone,
      countryiso: apiData.countryCode,
-     sc:'SOURCE',
+     sc:apiData.src,
      apikey: '51363aa0ca7743f2af06a45308e87baa' },
   headers: 
    { 'Postman-Token': '62b16b75-d54d-48bf-865c-7d93f3c7539d',
